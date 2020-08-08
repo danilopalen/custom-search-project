@@ -19,7 +19,12 @@ def home():
 
         r = requests.get(url, headers={'Ocp-Apim-Subscription-Key': subscriptionKey})
         res = r.json()
-        webpages = res['webPages']['value']
+
+        if 'webpages' in res:
+            webpages = res['webPages']['value']
+        else:
+            webpages = []
+            
         print(json.dumps(res, indent=4))
     
     else:
