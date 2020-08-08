@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1 class="text-center" style="padding: 20px 0;">My Search Engine</h1>
+    <div class="container mt-3">
+        <form action="/", method="POST">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" name="input">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">Go</button>
+                </div>
+            </div>
+        </form>
+        
+        {% for webpage in webpages %}
+        <div class="media border p-3">
+            <div class="media-body">
+                <h4><a href="{{ webpage['url'] }}" target="_blank">{{ webpage['name'] }}</a></h4>
+                <p>{{ webpage['snippet'] }}</p>
+            </div>
+            {% if 'openGraphImage' in webpage %}
+                <img src="{{ webpage['openGraphImage']['contentUrl'] }}" alt= "" class="mr-3 mt-3" style="width:150px;">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
