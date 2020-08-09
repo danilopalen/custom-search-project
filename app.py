@@ -22,11 +22,11 @@ def home():
         r = requests.get(url, headers={'Ocp-Apim-Subscription-Key': subscriptionKey})
         res = r.json()
 
-        if 'webpages' in res:
+        if 'webPages' in res:
             webpages = res['webPages']['value']
             
         print(json.dumps(res, indent=4))
-            
+        
     return render_template('index.html', webpages = webpages)
 
 
