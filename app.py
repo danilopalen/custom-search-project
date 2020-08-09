@@ -10,6 +10,8 @@ def home():
     subscriptionKey = "5748d72d720d42f8a2c0cfbc1cb75697"
     customConfigId = "5bc5c02b-e917-4f56-ba7c-9ce7b513cbdf"
 
+    webpages = []
+
     if request.method == 'POST':
         user_input = request.form['input']
 
@@ -22,14 +24,9 @@ def home():
 
         if 'webpages' in res:
             webpages = res['webPages']['value']
-        else:
-            webpages = []
             
         print(json.dumps(res, indent=4))
-    
-    else:
-        webpages = []
-        
+            
     return render_template('index.html', webpages = webpages)
 
 
